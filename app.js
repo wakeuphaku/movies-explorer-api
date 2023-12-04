@@ -15,6 +15,8 @@ const NotFoundError = require('./errors/NotFoundError');
 const corsUrl = [
   'http://localhost:3001',
   'https://localhost:3001',
+  'http://diplom.haku.nomoredomainsmonster.ru',
+  'https://diplom.haku.nomoredomainsmonster.ru',
 ];
 
 mongoose.connect('mongodb://localhost:27017/diplomdb', {
