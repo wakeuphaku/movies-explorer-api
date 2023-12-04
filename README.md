@@ -8,6 +8,4 @@
 
 IP 51.250.8.213
 
-
-
-Backend http://diplom.haku.nomoredomainsmonster.ru/
+Backend http://api.diplom.haku.nomoredomainsmonster.ru/

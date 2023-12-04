@@ -63,6 +63,8 @@ module.exports.patchUsers = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequest('Некорректные данные'));
+    } else if (err.code === 11000) {
+      next(new ConflictError('Email уже существует'));
     } else {
       next(err);
     }
@@ -91,4 +93,9 @@ module.exports.login = (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+};
+
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt');
+  return res.send({});
 };

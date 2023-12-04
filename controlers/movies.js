@@ -7,9 +7,10 @@ const NotFoundError = require('../errors/NotFoundError');
 const CREATED = 201;
 
 module.exports.getMovies = async (req, res, next) => {
+  const owner = req.user._id;
   try {
-    const movies = await Movie.find({});
-    res.send(movies);
+    const movies = await Movie.find({ owner });
+    res.status(200).send(movies);
   } catch (err) {
     next(err);
   }
@@ -59,7 +60,7 @@ module.exports.deleteMovie = (req, res, next) => {
   Movie.findById(req.params.movieId)
     .orFail(() => new NotFoundError('Фильм не найден'))
     .then((movie) => {
-      if (movie.owner.toString() !== movie && req.user._id) {
+      if (movie.owner.toString() !== req.user._id) {
         next(new AccessError('Нет прав'));
       } else {
         Movie.findByIdAndDelete(req.params.movieId)
