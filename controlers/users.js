@@ -75,7 +75,7 @@ module.exports.getCurrentUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id);
     if (!user) {
-      throw new NotFoundError('Пользователь не найен');
+      throw new NotFoundError('Пользователь не найден');
     }
     res.send(user);
   } catch (err) {
