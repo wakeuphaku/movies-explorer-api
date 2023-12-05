@@ -2,7 +2,7 @@ const express = require('express');
 
 const { errors } = require('celebrate');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/diplomdb' } = process.env;
 
 const mongoose = require('mongoose');
 
@@ -19,7 +19,7 @@ const corsUrl = [
   'https://diplom.haku.nomoredomainsmonster.ru',
 ];
 
-mongoose.connect('mongodb://localhost:27017/diplomdb', {
+mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
   autoIndex: true,
 });
